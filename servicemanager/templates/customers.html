@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="red-text text-darken-4 center-align">Customers</h3>
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_customer') }}" class="btn-large red darken-2">
+            Add Customer<i class="fas fa-plus-square right"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
