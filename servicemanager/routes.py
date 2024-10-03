@@ -21,3 +21,13 @@ def add_customer():
         db.session.commit()
         return redirect(url_for("customers"))
     return render_template("add_customer.html")
+
+@app.route("/update_customer/<int:customer_id>", methods=["GET", "POST"])
+def update_customer(customer_id):
+    customer = Customer.query.get_or_404(customer_id)
+    if request.method == "POST":
+        customer.customer_name = request.form.get("customer_name")
+        db.session.commit()
+        return redirect(url_for("customers"))
+    return render_template("update_customer.html", customer=customer)
+
