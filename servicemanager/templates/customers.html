@@ -19,7 +19,8 @@
             </div>
             <div class="card-action">
                 <a href="{{ url_for('update_customer', customer_id=customer.id) }}" class="btn blue accent-4">Update</a>
-                <a href="#" class="btn red">Remove</a>
+                <a href="{{ url_for('remove_customer', customer_id=customer.id) }}" class="btn red">Remove</a>
+                
             </div>
         </div>
     </div>

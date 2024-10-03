@@ -22,6 +22,7 @@ def add_customer():
         return redirect(url_for("customers"))
     return render_template("add_customer.html")
 
+
 @app.route("/update_customer/<int:customer_id>", methods=["GET", "POST"])
 def update_customer(customer_id):
     customer = Customer.query.get_or_404(customer_id)
@@ -30,4 +31,12 @@ def update_customer(customer_id):
         db.session.commit()
         return redirect(url_for("customers"))
     return render_template("update_customer.html", customer=customer)
+
+
+@app.route("/delete_customer/<int:customer_id>")
+def remove_customer(customer_id):
+    customer = Customer.query.get_or_404(customer_id)
+    db.session.delete(customer)
+    db.session.commit()
+    return redirect(url_for("customers"))
 
