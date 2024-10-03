@@ -4,4 +4,4 @@ from servicemanager.models import Customer, Service
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("services.html")
