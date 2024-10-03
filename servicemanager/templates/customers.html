@@ -10,5 +10,20 @@
         </a>
     </div>
 </div>
+<div class="row">
+    {% for customer in customers %}
+    <div class="col s12 m6 l3">
+        <div class="card red darken-4 center-align">
+            <div class="card-content black-text">
+                <span class="card-title">{{ customer.customer_name }}</span>
+            </div>
+            <div class="card-action">
+                <a href="#" class="btn blue accent-4">Update</a>
+                <a href="#" class="btn red">Remove</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

@@ -9,7 +9,8 @@ def home():
 
 @app.route("/customers")
 def customers():
-    return render_template("customers.html")
+    customers = list(Customer.query.order_by(Customer.customer_name).all())
+    return render_template("customers.html", customers=customers)
 
 
 @app.route("/add_customer", methods=["GET", "POST"])
