@@ -69,4 +69,4 @@ def edit_service(service_id):
         service.next_service = request.form.get("next_service")
         service.customer_id = request.form.get("customer_id")
         db.session.commit()
-    return render_template("edit_service.html", customers=customers)
+    return render_template("edit_service.html", service=service, customers=customers)
