@@ -13,9 +13,9 @@ class Customer(db.Model):
 
 
 class Service(db.Model):
-    # schema for the Service model
+    # Service model
     id = db.Column(db.Integer, primary_key=True)
-    service_type = db.Column(db.String(50), unique=True, nullable=False)
+    service_type = db.Column(db.String(50), nullable=False)
     service_description = db.Column(db.Text, nullable=False)
     safety_issue = db.Column(db.Boolean, default=False, nullable=False)
     next_service = db.Column(db.Date, nullable=False)

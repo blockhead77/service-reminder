@@ -4,7 +4,8 @@ from servicemanager.models import Customer, Service
 
 @app.route("/")
 def home():
-    return render_template("services.html")
+    services = list(Service.query.order_by(Service.id).all())
+    return render_template("services.html", services=services)
 
 
 @app.route("/customers")
