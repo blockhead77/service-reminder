@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="light-red-text text-darken-4 center-align">Edit Service</h3>
+
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('edit_service', service_id=service.id) }}">
+        <!-- Service Type -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-red-text text-darken-4"></i>
+                <input id="service_type" name="service_type" value="{{ service.service_type }}" minlength="5" maxlength="50"
+                    type="text" class="validate" required>
+                <label for="service">Service Type</label>
+            </div>
+        </div>
+        <!-- Service description -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-red-text text-darken-4"></i>
+                <textarea id="service_description" name="service_description" minlength="5" maxlength="200" type="text"
+                    class="materialize-textarea validate" required>
+                    {{- service.service_description -}}
+                </textarea>
+                <label for="service_description">Service Description</label>
+            </div>
+        </div>
+        <!-- Next Service -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-calendar-alt prefix light-red-text text-darken-4"></i>
+                <input id="next_service" name="next_service" type="text" value="{{ service.next_service.strftime('%d %B, %Y') }}"
+                    class="datepicker validate" required>
+                <label for="next_service">Next Service</label>
+            </div>
+        </div>
+        <!-- Safety issue -->
+        <div class="row">
+            <div class="input-field col s12">
+                <div class="switch">
+                    <i class="fas fa-exclamation-circle prefix light-red-text text-darken-4"></i>
+                    <label for="safety_issue">
+                        {% if service.safety_issue == True %}
+                            <input id="safety_issue" name="safety_issue" type="checkbox" checked>
+                        {% else %}
+                            <input id="safety_issue" name="safety_issue" type="checkbox">
+                        {% endif %}
+                        <span class="lever"></span>
+                        Is Urgent
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- Customer id -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                <select id="customer_id" name="customer_id" class="validate" required>
+                    <option value="" disabled>Who's Cycle?</option>
+                    {% for customer in customers %}
+                        {% if customer == service.customer %}
+                            <option value="{{ customer.id }}" selected>{{ customer.customer_name }}</option>
+                        {% else %}
+                            <option value="{{ customer.id }}">{{ customer.customer_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="customer_id">Customer</label>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large light-blue darken-1">
+                    Edit Service <i class="fas fa-edit right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

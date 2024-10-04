@@ -40,3 +40,32 @@ def remove_customer(customer_id):
     db.session.commit()
     return redirect(url_for("customers"))
 
+
+@app.route("/add_service", methods=["GET", "POST"])
+def add_service():
+    customers = list(Customer.query.order_by(Customer.customer_name).all())
+    if request.method == "POST":
+        service = Service(
+        service_type=request.form.get("service_type"),
+        service_description=request.form.get("service_description"),
+        safety_issue=bool(True if request.form.get("safety_issue") else False),
+        next_service=request.form.get("next_service"),
+        customer_id=request.form.get("customer_id")
+        )
+        db.session.add(service)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("add_service.html", customers=customers)
+
+@app.route("/edit_service/<int:service_id>", methods=["GET", "POST"])
+def edit_service(service_id):
+    service = Service.query.get_or_404(service_id)
+    customers = list(Customer.query.order_by(Customer.customer_name).all())
+    if request.method == "POST":
+        service.service_type = request.form.get("service_type")
+        service.service_description = request.form.get("service_description")
+        service.safety_issue = bool(True if request.form.get("safety_issue") else False)
+        service.next_service = request.form.get("next_service")
+        service.customer_id = request.form.get("customer_id")
+        db.session.commit()
+    return render_template("edit_service.html", customers=customers)

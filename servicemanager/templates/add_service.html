@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="red-text text-darken-1 center-align">Add Service</h3>
+
+
+<div class="row card-panel red lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('add_service') }}">
+        <!-- Service Type -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-bicycle light-red text text-darken-4"></i>
+                <input id="service_type" name="service_type" minlength="5" maxlength="10" type="text" class="validate" required>
+                <label for="service_type">Service Type</label>
+            </div>
+        </div>
+        <!-- Service description -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-red-text text-darken-4"></i>
+                <textarea id="service_description" name="service_description" minlength="5" maxlength="200"
+                    type="text" class="materialize-textarea validate" required></textarea>
+                <label for="service_description">Service Description</label>
+            </div>
+        </div>
+        <!-- Next Service date -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-calendar-alt prefix light-red text text-darken-4"></i>
+                <input id="next_service" name="next_service" type="text" class="datepicker validate" required>
+                <label for="next_service">Next Service Date</label>
+            </div>
+        </div>
+        <!-- Safety Issue -->
+        <div class="row">
+            <div class="input-field col s12">
+                <div class="switch">
+                    <i class="fas fa-exclamation-circle prefix light-red-text text-darken-4"></i>
+                    <label for="safety_issue">
+                        <input id="safety_issue" name="safety_issue" type="checkbox">
+                        <span class="lever"></span>
+                        Is there safety advisory?
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- customer id -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix light-red-text text-darken-4"></i>
+                <select id="customer_id" name="customer_id" class="validate" required>
+                    <option value="" disabled selected>Who's Cycle?</option>
+                    {% for customer in customers %}
+                        <option value="{{ customers.id }}">{{ customers.customers_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="customers_id">Customers</label>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large light-blue darken-1">
+                    Add Service<i class="fas fa-plus-square right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
