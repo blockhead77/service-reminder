@@ -16,12 +16,10 @@
     <li><details>
     <summary><a href="#visual-design">Visual Design</a></summary>
 
-    - [Wireframes](#wireframes)
     - [Fonts](#fonts)
     - [Icons](#icons)
     - [Colors](#colors)
-    - [Styling](#styling)
-    </details></li>
+      </details></li>
     </ul>
 
 2. <details open>
@@ -124,20 +122,24 @@ The Business Goals for the site will be:
 - The mechanic wants to be able to update the ownership details of a bicycle.
 
 ## Visual Design
-### Wireframes
-### Fonts
 
+### Fonts
+I used the basic fonts supplied with Google's Materialize.
+These are easy to read, and given that the content is almost entirely text, I felt that was a priority.
 
 ### Icons
+I used fontawesome's icons to make the buttons and and text more intuative and attractive.
 
 ### Colors
+I went with red and white like the classic doctors symbology. My initial plan was to build a clinic for bicycle type page, but time constraints meant it wasn't possible.
 
-### Styling
 
 ----
 
 # Features
+No main faeature as such, just an exercise in CRUD deployment.
 ## Page Elements
+
 ### All Pages
 #### Navbar
 #### Footer
