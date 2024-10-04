@@ -70,3 +70,11 @@ def edit_service(service_id):
         service.customer_id = request.form.get("customer_id")
         db.session.commit()
     return render_template("edit_service.html", service=service, customers=customers)
+
+
+@app.route("/delete_service/<int:service_id>")
+def delete_service(service_id):
+    service = Service.query.get_or_404(service_id)
+    db.session.delete(service)
+    db.session.commit()
+    return redirect(url_for("home"))
